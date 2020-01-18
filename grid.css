@@ -1,0 +1,70 @@
+/* Border box declaration */
+
+html {
+    box-sizing: border-box;
+}
+
+
+/* Inherit border-box in all elements in the universe before and after */
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+/* grid system -- mobile first! */
+
+.wraper {
+    width: 100%;
+    padding: 50px 20px;
+}
+
+.mg-row {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: -webkit-flex;
+    justify-content: space-between;
+    --columns: 12;
+}
+
+
+/* THE GRID JUICE */
+
+[class*="mg-col"] {
+    --width: 12;
+    --initialbasis: calc(var(--width) / var(--columns) * 100%);
+    --gap: calc((var(--columns) - var(--width)) * 1%);
+    flex-basis: calc(var(--initialbasis) - var(--gap));
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .mg-col-6-12-md {
+        --width: 6;
+        margin-bottom: var(--gap);
+    }
+}
+
+@media (min-width: 1024px) {
+    .mg-col-4-12-lg {
+        --width: 4;
+        margin-bottom: var(--gap);
+    }
+}
+
+@media (min-width: 1200px) {
+    .wraper {
+        padding: 100px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .mg-col-3-12-xl {
+        --width: 3.5;
+        margin-bottom: var(--gap);
+    }
+}
